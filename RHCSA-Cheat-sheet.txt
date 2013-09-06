@@ -1,0 +1,36 @@
+SELinux:
+	sestatus
+
+
+Firewall:
+	iptables -L
+	iptables -S
+	/etc/sysconfig/iptables-config
+	system-config-firewall
+
+
+NIC configuration:
+	ifconfig
+	ip addr
+	ip route add default <default gateway>
+	/etc/sysconfig/network-script/ifcfg-<dev name>
+
+
+TAR command:
+	(Create):	tar -cf <archive.tar.gz> <files or folder to archive>
+	(test):	tar -tf <archive.tar.gz>
+	(extract):	tar -xf <archive.tar.gz>
+
+	compression(-Z, -z, -j):  Z (compress), z (gzip), and j (bzip2)
+
+
+KVM virtualization:
+	(list group of package for virtualization): 
+	# yum grouplist | grep -i Virtual
+
+
+FTP:
+	(installation):		yum install vsftpd
+	(iptable config):	/etc/sysconfig/iptables-config
+										adds the nf_ conntrack_ftp module to the IPTABLES_MODULES directive
+	(adjust SELinux):	
