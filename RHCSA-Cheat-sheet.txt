@@ -1,5 +1,9 @@
 SELinux:
-	sestatus
+	(display status):	sestatus
+	(config):		
+	(change context):	chcon --reference=/var/www/html /var/www/html/os
+	(display context):	ls -Z
+
 
 
 Firewall:
@@ -8,6 +12,9 @@ Firewall:
 	/etc/sysconfig/iptables-config
 	system-config-firewall
 
+Networking:
+	(IP forwarding)			# echo 1 > /proc/sys/net/ipv4/ip_forward
+	(IP forwarding persistent)	edit /etc/sysctl.conf
 
 NIC configuration:
 	ifconfig
@@ -18,19 +25,33 @@ NIC configuration:
 
 TAR command:
 	(Create):	tar -cf <archive.tar.gz> <files or folder to archive>
-	(test):	tar -tf <archive.tar.gz>
+	(test):		tar -tf <archive.tar.gz>
 	(extract):	tar -xf <archive.tar.gz>
 
 	compression(-Z, -z, -j):  Z (compress), z (gzip), and j (bzip2)
 
 
 KVM virtualization:
-	(list group of package for virtualization): 
-	# yum grouplist | grep -i Virtual
+	(hints):	yum grouplist | grep -i Virtual
+	(image dir):	/var/lib/libvirt/images
+	(virt-manager):	yum install virt-manager
 
 
-FTP:
+FTP Server:
 	(installation):		yum install vsftpd
+	(folder):		/var/ftp/pub
 	(iptable config):	/etc/sysconfig/iptables-config
-										adds the nf_ conntrack_ftp module to the IPTABLES_MODULES directive
+				adds the nf_ conntrack_ftp module to the IPTABLES_MODULES directive
 	(adjust SELinux):	
+
+HTTP Server:
+	(installation):		yum install httpd
+	(config):		/etc/httpd/httpd.conf
+				/etc/httpd/conf
+	(contect folder):	/var/www/html
+	(for YUM depot):	/var/www/html/os
+	(change context):	chcon --reference=/var/www/html /var/www/html/os
+	(enable on boot):	chkconf add httpd
+	(start):		/etc/init.d/httpd start, service httpd start
+	(stop):			/etc/init.d/httpd stop, service httpd stop
+
