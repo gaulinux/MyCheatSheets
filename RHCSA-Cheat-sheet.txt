@@ -33,13 +33,30 @@ TAR command:
 
 KVM virtualization:
 	(hints):	yum grouplist | grep -i Virtual
+	(install):	yum groupinstall Virtualization
+			yum groupinstall "Virtualization Client"
+			yum groupinstall "Virtualization Platform"
 	(image dir):	/var/lib/libvirt/images
 	(virt-manager):	yum install virt-manager
+	
+virt-install command:
+	(wizzard mode):		virt-install --prompt
+	(from kickstart):	virt-install -n <vm name> -r 768 --disk \
+				path=<path to image \
+				-l <net install http url> \
+				-x "ks=<kickstart http url>"
 
+virsh commands:
+	(list all vm):	virsh list--all
+	(virsh shell):	virsh --connect qemu:///system
+	(start vm):
+	(shutdown vm):
+	(remove vm):
 
 FTP Server:
 	(installation):		yum install vsftpd
-	(folder):		/var/ftp/pub
+	(start on boot):	chkconfig vsftpd on
+	(content folder):	/var/ftp/pub
 	(iptable config):	/etc/sysconfig/iptables-config
 				adds the nf_ conntrack_ftp module to the IPTABLES_MODULES directive
 	(adjust SELinux):	
