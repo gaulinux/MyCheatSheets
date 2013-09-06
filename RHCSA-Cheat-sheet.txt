@@ -46,6 +46,9 @@ virt-install command:
 				-l <net install http url> \
 				-x "ks=<kickstart http url>"
 
+virt-clone command:
+
+
 virsh commands:
 	(list all vm):	virsh list--all
 	(virsh shell):	virsh --connect qemu:///system
@@ -72,3 +75,5 @@ HTTP Server:
 	(start):		/etc/init.d/httpd start, service httpd start
 	(stop):			/etc/init.d/httpd stop, service httpd stop
 
+Kickstart:
+	(utility):	system-config-kickstart
