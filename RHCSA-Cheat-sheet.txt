@@ -91,3 +91,10 @@ NFS Client:
 	(config):	mount 192.168.255.176:/srv/nfs/centos /mnt/centos
 	(fstab):	192.168.255.176:/srv/nfs/centos /mnt/centos nfs rw,addr=192.168.255.176 0 0
 
+Encryption:
+			cryptsetup luksformat /dev/vdb1
+			cryptsetup luksopen /dev/vdb1 cyptedvolname
+			mkfs.ext4 /dev/vdb1
+			- update /etc/crypttab
+				(cyptedvolname device)
+			- update fstab with real 
