@@ -46,6 +46,9 @@ virt-install command:
 				-l <net install http url> \
 				-x "ks=<kickstart http url>"
 
+Create VM hd image:
+			qemu-img create size path
+
 virt-clone command:
 
 
