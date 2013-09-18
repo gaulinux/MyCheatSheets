@@ -42,7 +42,7 @@ KVM virtualization:
 virt-install command:
 	(wizzard mode):		virt-install --prompt
 	(from kickstart):	virt-install -n <vm name> -r 768 --disk \
-				path=<path to image \
+				path=<path to image>,size=10 \
 				-l <net install http url> \
 				-x "ks=<kickstart http url>"
 
