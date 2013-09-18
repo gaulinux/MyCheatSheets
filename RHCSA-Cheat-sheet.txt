@@ -95,9 +95,15 @@ NFS Client:
 	(fstab):	192.168.255.176:/srv/nfs/centos /mnt/centos nfs rw,addr=192.168.255.176 0 0
 
 Encryption:
-			cryptsetup luksformat /dev/vdb1
-			cryptsetup luksopen /dev/vdb1 cyptedvolname
-			mkfs.ext4 /dev/vdb1
-			- update /etc/crypttab
-				(cyptedvolname device)
-			- update fstab with real 
+	(setup)		cryptsetup luksFormat /dev/vda1
+			cryptsetup luksFormat /dev/vda1
+			cryptsetup luksUUID /dev/vda1
+			cryptsetup luksOpen /dev/vda1 <UUID>
+			mkfs.ext4 /dev/mapper/59a74330-f555-449d-9d13-b9aab0d047aa
+			
+	(config)	#edit /etc/crypttab
+			shared UUID=59a74330-f555-449d-9d13-b9aab0d047aa none
+			
+			#edit /etc/fstab
+			/dev/mapper/59a74330-f555-449d-9d13-b9aab0d047aa /srv/cryptofs ext4 defaults 0 0
+ 
