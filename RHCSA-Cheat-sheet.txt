@@ -71,7 +71,7 @@ HTTP Server:
 	(installation):		yum install httpd
 	(config):		/etc/httpd/httpd.conf
 				/etc/httpd/conf
-	(contect folder):	/var/www/html
+	(content folder):	/var/www/html
 	(for YUM depot):	/var/www/html/os
 	(change context):	chcon --reference=/var/www/html /var/www/html/os
 	(enable on boot):	chkconf add httpd
