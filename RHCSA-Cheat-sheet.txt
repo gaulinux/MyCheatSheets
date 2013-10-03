@@ -94,9 +94,9 @@ NFS Client:
 	(config):	mount 192.168.255.176:/srv/nfs/centos /mnt/centos
 	(fstab):	192.168.255.176:/srv/nfs/centos /mnt/centos nfs rw,addr=192.168.255.176 0 0
 
-Encryption:
+
+Encryption (with UUID):
 	(setup)		cryptsetup luksFormat /dev/vda1
-			cryptsetup luksFormat /dev/vda1
 			cryptsetup luksUUID /dev/vda1
 			cryptsetup luksOpen /dev/vda1 <UUID>
 			mkfs.ext4 /dev/mapper/59a74330-f555-449d-9d13-b9aab0d047aa
@@ -106,4 +106,15 @@ Encryption:
 			
 			#edit /etc/fstab
 			/dev/mapper/59a74330-f555-449d-9d13-b9aab0d047aa /srv/cryptofs ext4 defaults 0 0
+
+Encryption:
+	(setup)		cryptsetup luksFormat /dev/vda1
+			cryptsetup luksOpen /dev/vda1 cryptedstuff
+			mkfs.ext4 /dev/mapper/cryptedstuff
+			
+	(config)	#edit /etc/crypttab
+			shared cryptedstuff none
+			
+			#edit /etc/fstab
+			/dev/mapper/crytpedstuff /srv/cryptofs ext4 defaults 0 0
  
